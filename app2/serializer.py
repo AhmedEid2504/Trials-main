@@ -1,11 +1,9 @@
 from rest_framework import serializers
-from .models import student
+from .models import student_data
 
-
-class studentSerializer(serializers.ModelSerializer):
+class studentSerializers(serializers.ModelSerializer):
     class Meta:
-        model = student
-        fields = '__all__'
-        
+        model = student_data
+        fields = ['id', 'name', 'email']
 
         

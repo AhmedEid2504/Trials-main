@@ -1,10 +1,13 @@
 from django.urls import path
-from . import views
+from .views import api_overview, students_list, student_detail
 
 urlpatterns = [
-    path('', views.api_overview, name='api_overview'),
-    path('students/', views.students_list),
-    path('student/<int:id>', views.student_info),
+    # API Overview
+    path('', api_overview, name='api_overview'),
+
+    # Students List and Create
+    path('students/', students_list, name='students_list'),
+    # Student Detail, Update, and Delete
+    path('students/<int:id>/', student_detail, name='student_detail'),
 
 ]
-
