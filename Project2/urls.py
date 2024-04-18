@@ -1,12 +1,11 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.urlpatterns import format_suffix_patterns
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app2.urls')),
+    path('app2/', include('app2.urls')),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns += staticfiles_urlpatterns()

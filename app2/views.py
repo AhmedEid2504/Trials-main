@@ -6,6 +6,18 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+# API Overview View
+@api_view(['GET'])
+def api_overview(request):
+    """
+    Provides an overview of the available API endpoints.
+    """
+    api_urls = {
+        'Get All Students and create': '/students/',
+        'detail delete update student': '/students/<id>/',
+    }
+    return Response(api_urls)
+
 
 @api_view(['GET', 'POST'])
 def students_list (request, format= False):

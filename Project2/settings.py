@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-a$6%yl$f(*oa^dms!760g0nkwp+)5@u8nr-*ya&*bl1-2$1x27'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(" ")
 
@@ -27,13 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'rest_framework',
+    'corsheaders',
     'app2',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # add this line to enable CORS headers
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -43,7 +43,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-USE_L10N = True
+
 ROOT_URLCONF = 'Project2.urls'
 
 TEMPLATES = [
@@ -72,6 +72,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'insight_learnDB',
+        'ENFORCE_SCHEMA': False,
+
         'CLIENT': {
 
             'host':'mongodb+srv://amiranayel:96IZndvLpNJPLlIv@maindatabase.kwtfz97.mongodb.net/?retryWrites=true&w=majority&appName=MainDatabase',
@@ -115,6 +117,8 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+USE_L10N = True #
 
 USE_TZ = True
 
